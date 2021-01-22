@@ -11,6 +11,7 @@ var firebaseConfig = {
   messagingSenderId: '485928686359',
   appId: '1:485928686359:web:bd041278fdb43b0cfd1d52',
   measurementId: 'G-8PF04SZCFQ',
+  databaseURL: 'https://react-slack-app-f981e-default-rtdb.firebaseio.com/',
 }
 
 // Initialize Firebase
