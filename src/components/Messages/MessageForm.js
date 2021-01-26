@@ -2,6 +2,7 @@ import React from 'react'
 import uuidv4 from 'uuid/v4'
 import firebase from '../../firebase'
 import { Segment, Button, Input } from 'semantic-ui-react'
+
 import FileModal from './FileModal'
 import ProgressBar from './ProgressBar'
 
@@ -19,13 +20,9 @@ class MessageForm extends React.Component {
     modal: false,
   }
 
-  openModal = () => {
-    this.setState({ modal: true })
-  }
+  openModal = () => this.setState({ modal: true })
 
-  closeModal = () => {
-    this.setState({ modal: false })
-  }
+  closeModal = () => this.setState({ modal: false })
 
   handleChange = (event) => {
     this.setState({ [event.target.name]: event.target.value })
@@ -40,13 +37,11 @@ class MessageForm extends React.Component {
         avatar: this.state.user.photoURL,
       },
     }
-
     if (fileUrl !== null) {
       message['image'] = fileUrl
     } else {
       message['content'] = this.state.message
     }
-
     return message
   }
 
@@ -91,9 +86,9 @@ class MessageForm extends React.Component {
         this.state.uploadTask.on(
           'state_changed',
           (snap) => {
-            const percentUploaded =
+            const percentUploaded = Math.round(
               (snap.bytesTransferred / snap.totalBytes) * 100
-            this.props.isProgressBarVisible(percentUploaded)
+            )
             this.setState({ percentUploaded })
           },
           (err) => {
@@ -141,14 +136,8 @@ class MessageForm extends React.Component {
   }
 
   render() {
-    const {
-      errors,
-      message,
-      loading,
-      modal,
-      uploadState,
-      percentUploaded,
-    } = this.state
+    // prettier-ignore
+    const { errors, message, loading, modal, uploadState, percentUploaded } = this.state;
 
     return (
       <Segment className='message__form'>
